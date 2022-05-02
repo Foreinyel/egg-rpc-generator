@@ -37,7 +37,7 @@ module.exports = app => {
   {{#each methods}}
 
     async {{ methodName }}(req) {
-      return await consumer.invoke('{{ methodName }}', [ req ], { 
+      return await consumer.invoke('{{ methodName }}', [ req, {...this.ctx.request.headers} ], { 
         ctx: this.ctx,
         {{#if extConfig.responseTimeout}}
         responseTimeout: {{extConfig.responseTimeout}},
